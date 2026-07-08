@@ -2,6 +2,7 @@
 % Please edit documentation in R/mustashe.R
 \docType{package}
 \name{mustashe}
+\alias{mustashe-package}
 \alias{mustashe}
 \title{mustashe: Stash and Load Objects in R}
 \description{
@@ -10,3 +11,23 @@ computations can be stashed after the first run and then reloaded the next
 time. Dependencies can be added to ensure that a computation is re-run if
 any of its dependencies or inputs have changed.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jhrcook/mustashe https://jhrcook.github.io/mustashe/}
+  \item Report bugs at \url{https://github.com/jhrcook/mustashe/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Joshua H Cook \email{joshuacook0023@gmail.com} (\href{https://orcid.org/0000-0001-9815-6879}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Jimmy Briggs \email{jimmy.briggs@oliverwyman.com} [contributor]
+  \item Vinay Viswanadham \email{vinayak.vsv@gmail.com} [contributor]
+  \item Travers Ching \email{traversc@gmail.com} [contributor]
+}
+
+}
+\keyword{internal}

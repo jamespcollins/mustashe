@@ -1,5 +1,4 @@
 test_that("the correct filenames are retrieved", {
-
   # Without using `here::here()`.
   config_mustashe(use_here = FALSE)
 
@@ -7,7 +6,7 @@ test_that("the correct filenames are retrieved", {
   expect_equal(
     filenames1,
     list(
-      data_name = file.path(".mustashe/josh.qs"),
+      data_name = file.path(".mustashe/josh.qs2"),
       hash_name = file.path(".mustashe/josh.hash")
     )
   )

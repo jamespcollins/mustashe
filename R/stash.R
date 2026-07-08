@@ -52,20 +52,28 @@
 #' }
 #'
 #' @export stash
-stash <- function(var,
-                  code,
-                  depends_on = NULL,
-                  functional = NULL,
-                  verbose = NULL) {
-  if (is.null(functional)) functional <- mustashe_functional()
-  if (is.null(verbose)) verbose <- mustashe_verbose()
+stash <- function(
+  var,
+  code,
+  depends_on = NULL,
+  functional = NULL,
+  verbose = NULL
+) {
+  if (is.null(functional)) {
+    functional <- mustashe_functional()
+  }
+  if (is.null(verbose)) {
+    verbose <- mustashe_verbose()
+  }
   check_stash_dir()
 
   deparsed_code <- deparse(substitute(code))
   formatted_code <- format_code(deparsed_code)
 
   var <- validate_var(var, functional)
-  if (formatted_code == "NULL") stop("`code` cannot be NULL")
+  if (formatted_code == "NULL") {
+    stop("`code` cannot be NULL")
+  }
 
   # The environment where all code is evaluated and variables assigned.
   target_env <- parent.frame()
@@ -90,7 +98,11 @@ stash <- function(var,
         message("Updating stash.")
       }
       res <- new_stash(
-        var, formatted_code, new_hash_tbl, functional, target_env
+        var,
+        formatted_code,
+        new_hash_tbl,
+        functional,
+        target_env
       )
     }
   } else {
@@ -186,7 +198,7 @@ has_been_stashed <- function(var) {
 
 # Retrieve the hash table as a `tibble`.
 get_hash_table <- function(var) {
-  dat <- qs::qread(stash_filename(var)$hash_name)
+  dat <- qs2::qs_read(stash_filename(var)$hash_name)
   dat <- tibble::as_tibble(dat)
   return(dat)
 }
@@ -194,21 +206,21 @@ get_hash_table <- function(var) {
 
 # Write the hash table to file.
 write_hash_table <- function(var, tbl) {
-  qs::qsave(tbl, stash_filename(var)$hash_name)
+  qs2::qs_save(tbl, stash_filename(var)$hash_name)
 }
 
 
 # Write the value to disk.
 write_val <- function(var, val) {
   path <- stash_filename(var)$data_name
-  qs::qsave(val, path)
+  qs2::qs_save(val, path)
 }
 
 
 # Load in a variable from disk and assign it to the target environment.
 load_variable <- function(var, functional, target_env) {
   path <- stash_filename(var)$data_name
-  val <- qs::qread(path)
+  val <- qs2::qs_read(path)
   if (functional) {
     return(val)
   } else {
@@ -236,7 +248,7 @@ assign_value <- function(var, val, target_env) {
 stash_filename <- function(var) {
   stash_dir <- get_stash_dir()
   return(list(
-    data_name = file.path(stash_dir, paste0(var, ".qs")),
+    data_name = file.path(stash_dir, paste0(var, ".qs2")),
     hash_name = file.path(stash_dir, paste0(var, ".hash"))
   ))
 }

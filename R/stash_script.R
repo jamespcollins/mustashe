@@ -37,7 +37,9 @@
 #' print(x)
 #' @export
 stash_script <- function(script_path, depends_on = NULL, verbose = NULL) {
-  if (is.null(verbose)) verbose <- mustashe_verbose()
+  if (is.null(verbose)) {
+    verbose <- mustashe_verbose()
+  }
 
   # check input
   if (check_script_path(script_path)) {
@@ -62,7 +64,8 @@ stash_script <- function(script_path, depends_on = NULL, verbose = NULL) {
   )
 
   # Use stash to source the script, and return the result
-  stash(script_key,
+  stash(
+    script_key,
     {
       source(file = script_path, local = TRUE)$value
     },

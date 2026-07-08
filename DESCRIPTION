@@ -32,7 +32,7 @@ BugReports: https://github.com/jhrcook/mustashe/issues
 Imports:
     digest (>= 0.6.0),
     formatR (>= 1.7),
-    qs (>= 0.24.1),
+    qs2 (>= 0.1.7),
     tibble (>= 2.1.0),
     here (>= 0.1.0)
 Suggests:
@@ -47,4 +47,4 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.2.0
+RoxygenNote: 7.3.3

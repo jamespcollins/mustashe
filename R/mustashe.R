@@ -7,4 +7,5 @@
 #
 #' @docType package
 #' @name mustashe
+#' @keywords internal
 NULL

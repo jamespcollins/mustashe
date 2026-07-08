@@ -224,7 +224,7 @@ assign_value <- function(var, val, target_env) {
 }
 ```
 
-Lastly, the hash table and value are written to file using wrapper functions around `qs::qsave()`.
+Lastly, the hash table and value are written to file using wrapper functions around `qs2::qs_save()`.
 
 ## Some details
 

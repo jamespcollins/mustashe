@@ -276,7 +276,7 @@ config_mustashe(verbose = FALSE, functional = TRUE)
 I would like to thank the contributors to this package for their additions of key features and bug squashing:
 
 - [vinayakvsv](https://github.com/vinayakvsv) fixed an annoying bug early on in the development of the library.
-- [jimbrig](https://github.com/jimbrig) replaced the file read/write system with the 'qs' library.
+- [jimbrig](https://github.com/jimbrig) replaced the file read/write system with the 'qs2' library.
 - [traversc](https://github.com/traversc) introduced the functional API to `stash()`.
 - [torfason](https://github.com/torfason) upgraded R environment management enabling stashing in functions and linking functions as dependencies to a stashed object. He also created `stash_script()`.
 

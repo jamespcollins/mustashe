@@ -10,12 +10,14 @@
 #' clear_stash()
 #' @export clear_stash
 clear_stash <- function(verbose = NULL) {
-  if (is.null(verbose)) verbose <- mustashe_verbose()
+  if (is.null(verbose)) {
+    verbose <- mustashe_verbose()
+  }
   if (verbose) {
     message("Clearing stash.")
   }
   file.remove(c(
-    list.files(get_stash_dir(), full.names = TRUE, pattern = "qs$"),
+    list.files(get_stash_dir(), full.names = TRUE, pattern = "qs2$"),
     list.files(get_stash_dir(), full.names = TRUE, pattern = "hash$")
   ))
   invisible(NULL)

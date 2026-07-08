@@ -5,15 +5,15 @@ test_that("the stash gets cleared", {
     on.exit(unlink(target_dir))
   }
 
-  qs_file <- file.path(target_dir, "stash1.qs")
+  qs2_file <- file.path(target_dir, "stash1.qs2")
   hash_file <- file.path(target_dir, "stash1.hash")
   other_file <- file.path(target_dir, "other_file.txt")
 
-  file.create(c(qs_file, hash_file, other_file))
+  file.create(c(qs2_file, hash_file, other_file))
 
-  expect_true(all(file.exists(c(qs_file, hash_file, other_file))))
+  expect_true(all(file.exists(c(qs2_file, hash_file, other_file))))
   expect_message(clear_stash(), "Clearing stash")
-  expect_false(any(file.exists(c(qs_file, hash_file))))
+  expect_false(any(file.exists(c(qs2_file, hash_file))))
   expect_true(file.exists(other_file))
 
   if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)

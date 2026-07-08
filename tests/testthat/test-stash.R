@@ -10,15 +10,14 @@ test_that("stashing works", {
   expect_null(stash("a", {
     a <- 1
   }))
-  expect_true(file.exists(file.path(target_dir, "a.qs")))
+  expect_true(file.exists(file.path(target_dir, "a.qs2")))
   expect_true(file.exists(file.path(target_dir, "a.hash")))
-
 
   file_time <- function(path) {
     file.info(path)$mtime
   }
 
-  old_qs_time <- file_time(file.path(target_dir, "a.qs"))
+  old_qs2_time <- file_time(file.path(target_dir, "a.qs2"))
   old_hash_time <- file_time(file.path(target_dir, "a.hash"))
   Sys.sleep(1.5)
 
@@ -26,14 +25,14 @@ test_that("stashing works", {
     a <- 1
   }))
   expect_equal(a, 1)
-  expect_equal(file_time(file.path(target_dir, "a.qs")), old_qs_time)
+  expect_equal(file_time(file.path(target_dir, "a.qs2")), old_qs2_time)
   expect_equal(file_time(file.path(target_dir, "a.hash")), old_hash_time)
 
   expect_null(stash("a", {
     a <- 2
   }))
   expect_equal(a, 2)
-  expect_false(file_time(file.path(target_dir, "a.qs")) == old_qs_time)
+  expect_false(file_time(file.path(target_dir, "a.qs2")) == old_qs2_time)
   expect_false(file_time(file.path(target_dir, "a.hash")) == old_hash_time)
 
   clear_stash()
@@ -43,12 +42,12 @@ test_that("stashing works", {
     a <- b + 1
   }))
   expect_equal(a, 2)
-  expect_true(file.exists(file.path(target_dir, "a.qs")))
+  expect_true(file.exists(file.path(target_dir, "a.qs2")))
   expect_true(file.exists(file.path(target_dir, "a.hash")))
-  expect_false(file.exists(file.path(target_dir, "b.qs")))
+  expect_false(file.exists(file.path(target_dir, "b.qs2")))
   expect_false(file.exists(file.path(target_dir, "b.hash")))
 
-  old_qs_time <- file_time(file.path(target_dir, "a.qs"))
+  old_qs2_time <- file_time(file.path(target_dir, "a.qs2"))
   old_hash_time <- file_time(file.path(target_dir, "a.hash"))
   Sys.sleep(1.5)
 
@@ -56,7 +55,7 @@ test_that("stashing works", {
     a <- b + 1
   }))
   expect_equal(a, 2)
-  expect_equal(file_time(file.path(target_dir, "a.qs")), old_qs_time)
+  expect_equal(file_time(file.path(target_dir, "a.qs2")), old_qs2_time)
   expect_equal(file_time(file.path(target_dir, "a.hash")), old_hash_time)
 
   b <- 2
@@ -64,7 +63,7 @@ test_that("stashing works", {
     a <- b + 1
   }))
   expect_equal(a, 3)
-  expect_false(file_time(file.path(target_dir, "a.qs")) == old_qs_time)
+  expect_false(file_time(file.path(target_dir, "a.qs2")) == old_qs2_time)
   expect_false(file_time(file.path(target_dir, "a.hash")) == old_hash_time)
 
   # Clean-up
@@ -76,15 +75,26 @@ test_that("stashing works", {
 test_that("stashing works", {
   stash_filename("x")
 
-  x <- stash("x", { 1 }, functional = TRUE  # styler: off
+  x <- stash(
+    "x",
+    {
+      1
+    },
+    functional = TRUE # styler: off
   )
   expect_equal(x, 1)
 
-  x <- stash("x", { 1 }, functional = TRUE)  # styler: off
+  x <- stash(
+    "x",
+    {
+      1
+    },
+    functional = TRUE
+  ) # styler: off
   expect_equal(x, 1)
 
   target_dir <- get_stash_dir()
-  expect_true(file.exists(file.path(target_dir, "x.qs")))
+  expect_true(file.exists(file.path(target_dir, "x.qs2")))
   expect_true(file.exists(file.path(target_dir, "x.hash")))
 
   # Clean-up

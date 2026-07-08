@@ -26,7 +26,9 @@
 #'
 #' @export unstash
 unstash <- function(var, single_var, verbose = NULL) {
-  if (is.null(verbose)) verbose <- mustashe_verbose()
+  if (is.null(verbose)) {
+    verbose <- mustashe_verbose()
+  }
   f <- function(v) {
     v <- validate_var(v, functional = TRUE)
     if (has_been_stashed(v)) {
